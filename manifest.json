@@ -1,0 +1,18 @@
+{
+
+    "manifest_version": 2,
+    "name": "Youtube Monitor",
+    "version": "1.0",
+    "description": "Manage the time you waste on Youtube",
+
+    "permissions": [
+        "activeTab",
+        "webRequest",
+        "webRequestBlocking",
+        "<all_urls>"
+    ],
+    "background": {
+        "scripts": ["scripts/background/background.js"],
+        "persistent": true
+    }
+  }
