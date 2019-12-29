@@ -1,7 +1,13 @@
+import {blockedURLs, redirectTo} from '../utils/config.js';
+import {endsWithAny, removeURLParameters} from '../utils/utils.js';
+
 chrome.webRequest.onBeforeRequest.addListener(
     function(details) {
-        if(details.url.endsWith("www.youtube.com/"))
-            return {redirectUrl:"https://www.youtube.com/feed/subscriptions"};
+        let cleanURL = removeURLParameters(details.url);
+        if(endsWithAny(cleanURL, blockedURLs)){
+            return {redirectUrl: redirectTo};
+        }
     },
-    {urls: ["http://*.youtube.com/*", "https://*.youtube.com/*"]},
-    ["blocking"]);
+    {urls: ["*://*.youtube.com/*"]},
+    ["blocking"]
+);
